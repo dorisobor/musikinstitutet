@@ -2,6 +2,7 @@ main {
     text-align:center;
 }
 
+/* Top 5 Albums Section */
 div.wrapper-title{
   h1{
     text-align:center;
@@ -11,7 +12,7 @@ div#content-albums{
   background-color:#f1f1f1;
   border: 2px solid red;
   margin: 0 auto;
-  div.col-sm-3{
+  div.col-sm{
     border: 1px solid blue;
     padding: 0;
     img {

@@ -49,21 +49,30 @@ function fetchTopAlbums() {
 		.then((response) => response.json())
 		.then((albums) => {
 			globalAlbumsList = albums;
+      // Creating a variable to hold albums passed through the sortRatedAlbums function.
+      const sortedAlbums = sortRatedAlbums(albums);
 
-      // All albums that have ratings.
-      const ratedAlbums = albums.filter(album => album.ratings.length>0);
-
-      // Albums sorted by rating
-      const sortedAlbums = ratedAlbums.sort((album, next) => calculateRating(next) - calculateRating(album));
-
-      //slice returns the first 5 albums in the object.
+      // Slice the array to return the first 5 albums in the object.
       for (album of sortedAlbums.slice(0,5)){
         getAlbumById(album._id);
       }
+
     })
 		.catch((error) => {
 			console.log(error)
 		});
+}
+
+function sortRatedAlbums(albums){
+  // Identifying only the albums that have ratings.
+  const ratedAlbums = albums.filter(album => album.ratings.length>0);
+
+  // Sorting those albums by rating in descending order.
+  const sortedAlbums = ratedAlbums.sort((album, next) => calculateRating(next) - calculateRating(album));
+
+
+
+  return sortedAlbums;
 }
 
 /* This function calculates the rating of an object.

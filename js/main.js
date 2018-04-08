@@ -28,8 +28,6 @@ function fetchArtist() {
 			}
 			contentArtists.innerHTML = articleArtist;
 		})
-
-
 		.catch((error) => {
 			console.log(error)
 		});
@@ -42,38 +40,69 @@ function fetchArtist() {
 // get all 5 albums
 let globalAlbumtList = [];
 
-// Load all the albums
-fetchAlbums();
+// Load Top 5 Albums
+fetchTopAlbums();
 
-// Fetch artists
-function fetchAlbums() {
-
-	fetch(`https://folksa.ga/api/albums?limit=5&key=flat_eric`)
+// Fetch albums
+function fetchTopAlbums() {
+	fetch(`https://folksa.ga/api/albums?limit=10000&key=flat_eric`)
 		.then((response) => response.json())
 		.then((albums) => {
 			globalAlbumsList = albums;
-      for (album of albums){
+
+      // All albums that have ratings.
+      const ratedAlbums = albums.filter(album => album.ratings.length>0);
+
+      // Albums sorted by rating
+      const sortedAlbums = ratedAlbums.sort((album, next) => calculateRating(next) - calculateRating(album));
+
+      //slice returns the first 5 albums in the object.
+      for (album of sortedAlbums.slice(0,5)){
         getAlbumById(album._id);
       }
-      /*
-			// loop through all albums
-			let articleAlbums = "";
-			for (const album of albums) {
-				articleAlbums += `
-          <article><p>${album.title} Artist: ${album.artists}</p></article>
-        `;
-			}
-			contentAlbums.innerHTML = articleAlbums;
-
-      */
     })
 		.catch((error) => {
 			console.log(error)
 		});
 }
 
-/*TRACK PART*/
+/* This function calculates the rating of an object.
+** Can use this function to calculate the rating of any object.
+*/
+function calculateRating(object){
+  /* Filtering out nulls. Don't want to include
+  ** nulls in total sum count when we're calculating the average rating.
+  */
+  const filteredRatings = object.ratings.filter(rating => rating != null);
 
+  // Calculating total sum of all ratings using reduce method
+  let ratingsTotalSum = filteredRatings.reduce((a, b) => a + b);
+
+  // Finding the mean average rating
+  let averageRating = ratingsTotalSum / filteredRatings.length;
+
+  // Converts number to string and keeps it to 1 decimal place.
+  averageRating = averageRating.toFixed(1);
+
+  // Adding the averageRating into the object as a new key.
+  object.averageRating = averageRating;
+
+  return averageRating;
+}
+
+function getAlbumById(albumID){
+  fetch(`https://folksa.ga/api/albums/${albumID}?key=flat_eric`)
+  .then(response => response.json())
+  .then(album =>{
+    calculateRating(album);
+    View.displayAlbum(album);
+  })
+  .catch(error => {
+    errorMessage.innerText = error;
+  });
+}
+
+/*TRACK PART*/
 
 // Load all tracks
 fetchTracks();
@@ -95,21 +124,7 @@ function fetchTracks() {
 			}
 			contentTracks.innerHTML = articleTrack;
 		})
-
-
 		.catch((error) => {
 			console.log(error)
 		});
-}
-
-
-function getAlbumById(albumID){
-  fetch(`https://folksa.ga/api/albums/${albumID}?key=flat_eric`)
-  .then(response => response.json())
-  .then(album =>{
-    View.displayAlbum(album);
-  })
-  .catch(error => {
-    errorMessage.innerText = error;
-  });
 }

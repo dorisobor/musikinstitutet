@@ -1,10 +1,7 @@
 const View = {
-
+/*
   displayArtist(allArtists){
     for (const artist of allArtists){
-      //let li = document.createElement('li');
-      //li.innerText = artist.name;
-      //artists.appendChild(li);
 
       let artistName = artist.name;
       let artistCard = `
@@ -15,33 +12,33 @@ const View = {
       artists.innerHTML += artistCard;
     }
   },
-
+*/
   displayAlbum(album){
-    //for (const album of allAlbums){}
-      //let li = document.createElement('li');
-      //li.innerText = album.title;
-      //albums.appendChild(li);
+    const albumTitle = album.title;
+    const albumImage = album.coverImage || "https://orig00.deviantart.net/5162/f/2014/153/9/e/no_album_art__no_cover___placeholder_picture_by_cmdrobot-d7kpm65.jpg";
 
-      const albumTitle = album.title;
-      const albumImage = album.coverImage || "https://orig00.deviantart.net/5162/f/2014/153/9/e/no_album_art__no_cover___placeholder_picture_by_cmdrobot-d7kpm65.jpg";
+    //if album.artist name is not there, then return message, else return album artist name.
+    //let artistName = album.artists[0] ? album.artists[0].name : "undefined not there";
 
-      //if album.artist name is not there, then return message, else return album artist name.
-      //let artistName = album.artists[0] ? album.artists[0].name : "undefined not there";
+    // displays more than one artist if there, or none if there aren't any (see temp lit vid)
+    const artistName = album.artists.map(artist => artist.name).join(", ");
 
-      // displays more than one artist if there, or none if there aren't any (see temp lit vid)
-      const artistName = album.artists.map(artist => artist.name).join(", ");
+    // Average rating is passed with the album object, therefore can
+    // be returned in the template literal.
+    const averageRating = album.averageRating;
+    console.log(album);
 
-      const albumCard = `
+    const albumCard = `
         <div class="col-sm">
           <img src = "${albumImage}">
           <p class="album-title"><span class="label">Album:</span> ${albumTitle}</p>
           <p class="artist-name"><span class="label">Artist:</span> ${artistName}</p>
+          <p class="rating"><span class="label">Average rating:</span> ${averageRating}</p>
         </div>
         `;
-
-      contentAlbums.innerHTML += albumCard;
+     contentAlbums.innerHTML += albumCard;
   },
-
+  /*
   emptySearchBox(){
       let emptySearchBoxMessage =
       `<div class="alert alert-info" role="alert">
@@ -51,4 +48,5 @@ const View = {
       let errorMessage = document.getElementById('error-message');
       errorMessage.innerHTML = emptySearchBoxMessage;
   }
+  */
 }

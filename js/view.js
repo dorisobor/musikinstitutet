@@ -32,7 +32,7 @@ const View = {
       const artistName = album.artists.map(artist => artist.name).join(", ");
 
       const albumCard = `
-        <div class="col-sm-3">
+        <div class="col-sm">
           <img src = "${albumImage}">
           <p class="album-title"><span class="label">Album:</span> ${albumTitle}</p>
           <p class="artist-name"><span class="label">Artist:</span> ${artistName}</p>

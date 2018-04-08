@@ -1,0 +1,43 @@
+main {
+    text-align:center;
+}
+
+
+
+/*
+<div class="wrapper-title">
+    <h1>Top 5 Albums</h1>
+</div>
+<div id="content-albums">
+</div>
+*/
+
+body{
+  margin: 0 auto;
+}
+img {
+  width: 100%;
+
+}
+
+#content-albums{
+  background-color:#f1f1f1;
+}
+
+.row{
+  border: 2px solid red;
+  margin: 0 auto;
+}
+
+h2{
+  text-align:center;
+}
+.label{
+    font-weight: bold;
+}
+
+.col-sm-3{
+  border: 1px solid blue;
+  //margin: 15px;
+  padding: 0;
+}

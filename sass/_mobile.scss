@@ -10,10 +10,10 @@ div.wrapper-title{
 }
 div#content-albums{
   background-color:#f1f1f1;
-  border: 2px solid red;
+  //border: 2px solid red;
   margin: 0 auto;
   div.col-sm{
-    border: 1px solid blue;
+    //border: 1px solid blue;
     padding: 20px;
     img {
       width: 100%;
@@ -24,6 +24,34 @@ div#content-albums{
       background-color: #fff;
       padding: 5px 5px 20px 5px;
       p.album-title, p.artist-name,p.rating {
+        text-align:left;
+        padding: 0 5px 0 5px;
+        margin: 0;
+        span.label{
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+/* Featured 5 Artists Section */
+div#content-artists{
+  background-color:#f1f1f1;
+  //border: 2px solid red;
+  margin: 0 auto;
+  div.col-sm{
+    //border: 1px solid blue;
+    padding: 20px;
+    img {
+      width: 100%;
+      border: solid 1px lightgrey;
+    }
+    div.artist-information{
+      border: solid 1px lightgrey;
+      background-color: #fff;
+      padding: 5px 5px 20px 5px;
+      p.artist-name {
         text-align:left;
         padding: 0 5px 0 5px;
         margin: 0;

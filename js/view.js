@@ -1,18 +1,22 @@
 const View = {
-/*
+
   displayArtist(allArtists){
     for (const artist of allArtists){
 
       let artistName = artist.name;
+      let artistImage = artist.coverImage;
       let artistCard = `
-      <div>
-        <p>${artistName}</p>
+      <div class="col-sm">
+        <img src = "${artistImage}">
+        <div class="artist-information">
+          <p class="artist-name">${artistName}</p>
+        </div>
       </div>
       `;
-      artists.innerHTML += artistCard;
+      contentArtists.innerHTML += artistCard;
     }
   },
-*/
+
   displayAlbum(album){
     const albumTitle = album.title;
     const albumImage = album.coverImage || "https://orig00.deviantart.net/5162/f/2014/153/9/e/no_album_art__no_cover___placeholder_picture_by_cmdrobot-d7kpm65.jpg";

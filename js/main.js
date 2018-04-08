@@ -14,11 +14,18 @@ fetchArtist();
 // Fetch artists
 function fetchArtist() {
 
-	fetch(`https://folksa.ga/api/artists?limit=5&key=flat_eric`)
+	fetch(`https://folksa.ga/api/artists?limit=5000&key=flat_eric`)
 		.then((response) => response.json())
 		.then((artists) => {
 			globalArtistList = artists;
 
+      //Randomise artist array and splicing to display first 5
+      View.displayArtist(artists.filter(artist => artist.coverImage)
+                                //.sort((a, b) => 0.5 - Math.random())
+                                .sort(function(a, b){return 0.5 - Math.random()})
+                                .splice(0,5));
+
+      /*
 			// loop through all artists
 			let articleArtist = "";
 			for (const artist of artists) {
@@ -27,6 +34,7 @@ function fetchArtist() {
         `;
 			}
 			contentArtists.innerHTML = articleArtist;
+      */
 		})
 		.catch((error) => {
 			console.log(error)

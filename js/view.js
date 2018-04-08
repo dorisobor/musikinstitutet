@@ -29,11 +29,13 @@ const View = {
     console.log(album);
 
     const albumCard = `
-        <div class="col-sm">
+        <div class="col-sm" >
           <img src = "${albumImage}">
-          <p class="album-title"><span class="label">Album:</span> ${albumTitle}</p>
-          <p class="artist-name"><span class="label">Artist:</span> ${artistName}</p>
-          <p class="rating"><span class="label">Average rating:</span> ${averageRating}</p>
+          <div class="album-information">
+            <p class="album-title"><span class="label">${albumTitle}</span> </p>
+            <p class="artist-name"><span class="label"></span> ${artistName}</p>
+            <p class="rating"><span class="label">Average rating:</span> ${averageRating}</p>
+          </div>
         </div>
         `;
      contentAlbums.innerHTML += albumCard;

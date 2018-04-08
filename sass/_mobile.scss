@@ -14,13 +14,22 @@ div#content-albums{
   margin: 0 auto;
   div.col-sm{
     border: 1px solid blue;
-    padding: 0;
+    padding: 20px;
     img {
       width: 100%;
+      border: solid 1px lightgrey;
     }
-    p.album-title{
-      span.label{
+    div.album-information{
+      border: solid 1px lightgrey;
+      background-color: #fff;
+      padding: 5px 5px 20px 5px;
+      p.album-title, p.artist-name,p.rating {
+        text-align:left;
+        padding: 0 5px 0 5px;
+        margin: 0;
+        span.label{
           font-weight: bold;
+        }
       }
     }
   }

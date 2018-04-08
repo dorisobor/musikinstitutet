@@ -70,8 +70,6 @@ function sortRatedAlbums(albums){
   // Sorting those albums by rating in descending order.
   const sortedAlbums = ratedAlbums.sort((album, next) => calculateRating(next) - calculateRating(album));
 
-
-
   return sortedAlbums;
 }
 
